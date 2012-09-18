@@ -30,6 +30,14 @@ object Show {
       case Invalid(raw) => "invalid: %s" format raw
     }
   }
+  implicit object ShowSemVersion extends Show[SemVersion] {
+    def show(v: SemVersion) = v match {
+      case x: NormalVersion => implicitly[Show[NormalVersion]].show(x)
+      case x: PreReleaseVersion => implicitly[Show[PreReleaseVersion]].show(x)
+      case x: BuildVersion => implicitly[Show[BuildVersion]].show(x)
+      case x: Invalid => implicitly[Show[Invalid]].show(x)
+    }
+  }
 
   def apply[T <: SemVersion: Show](v: T) =
     implicitly[Show[T]].show(v)

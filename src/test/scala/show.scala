@@ -16,5 +16,9 @@ object ShowSpec extends Specification {
     "show invalid versions" in {
       Show(Invalid("asdfasdf")) must_== "invalid: asdfasdf"
     }
+    "show SemVersion versions" in {
+      val v: SemVersion = NormalVersion(1, 2, 3)
+      Show(v) must_== "1.2.3"
+    }
   }
 }

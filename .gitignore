@@ -1,3 +1,5 @@
-target
-sbt
+.idea/
+.idea_modules/
 .lib
+sbt
+target
