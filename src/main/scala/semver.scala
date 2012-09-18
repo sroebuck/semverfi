@@ -8,10 +8,11 @@ object Version {
     }
 }
 
-sealed trait SemVersion {
+sealed trait SemVersion extends SemVersionOrdering {
   def major: Int
   def minor: Int
   def patch: Int
+  override def toString = Show(this)
 }
 
 case class Invalid(raw: String) extends SemVersion {
